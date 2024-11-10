@@ -4,7 +4,7 @@ WORKDIR /web
 
 # get dependencies
 COPY package.json .
-COPY package-lock.json .
+COPY pnpm-lock.yaml .
 
 RUN npm install -g pnpm
 RUN pnpm install
