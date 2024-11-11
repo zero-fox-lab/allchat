@@ -12,6 +12,13 @@ const esb = require("esbuild");
     switch (args[0]) {
     case "build":
         await build();
+        break;
+    case "watch":
+        await watch();
+        break;
+    default:
+        console.error(`unknown action "${args[0]}"`);
+        process.exit(1);
     }
 })();
 
@@ -30,4 +37,16 @@ async function build() {
         platform: "node",
         outfile: "./dist/bin/main.js"
     });
+}
+
+async function watch() {
+    const ctx = await esb.context({
+        entryPoints: [ "./src/api/main.ts" ],
+        bundle: true,
+        sourcemap: true,
+        platform: "node",
+        outfile: "./dist/bin/main.js"
+    });
+
+    await ctx.watch();
 }
