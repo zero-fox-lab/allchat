@@ -25,6 +25,6 @@ WORKDIR /web
 COPY --from=builder /web/dist/. dist/.
 COPY --from=builder /web/package.json .
 
-EXPOSE 3000
-
+#
+EXPOSE 8080
 CMD ["npm", "run", "start"]
